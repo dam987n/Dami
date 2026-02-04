@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💕</title>
+
+<style>
+body{
+margin:0;
+font-family:cursive;
+text-align:center;
+background:linear-gradient(135deg,#ffd6e8,#fff);
+overflow:hidden;
+}
+
+.page{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+animation:fade 1s;
+}
+
+.active{display:flex;}
+
+@keyframes fade{
+from{opacity:0;transform:scale(.8);}
+to{opacity:1;}
+}
+
+button{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+font-size:18px;
+margin:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.yes{background:#ff4d88;color:white;}
+.no{background:#7db8ff;color:white;}
+
+.envelope{
+width:230px;
+height:150px;
+background:#ff6b9c;
+border-radius:10px;
+cursor:pointer;
+position:relative;
+}
+
+.letter{
+position:absolute;
+width:90%;
+height:140px;
+background:white;
+top:5px;
+left:5%;
+padding:10px;
+border-radius:10px;
+transform:translateY(100%);
+transition:1s;
+font-size:14px;
+}
+
+.envelope.open .letter{
+transform:translateY(-40px);
+}
+
+.jump{
+animation:jump 1s infinite;
+}
+
+@keyframes jump{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+.heart{
+position:fixed;
+color:#ff4d88;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+<h1>Will you be My Valentine? 💖</h1>
+<button class="yes" id="yes1" onclick="next(2)">YES ❤️</button>
+<button class="no" onclick="grow('yes1')">NO 💙</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+<h2>Will you be mine 🥹</h2>
+<p>Because life feels softer, brighter, and more beautiful when it’s with you… ❤️”</p>
+<button class="yes" id="yes2" onclick="next(3)">YES ❤️</button>
+<button class="no" onclick="grow('yes2')">NO 💙</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+<h2>Are you sure 😚?</h2>
+<p>Because saying yes means signing up for a lifetime of my love, care, and endless talks ❤️”</p>
+<button class="yes" id="yes3" onclick="next(4)">YES ❤️</button>
+<button class="no" onclick="grow('yes3')">NO 💙</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+<h2>Think again 😭</h2>
+<p>Because my heart has already chosen you, and it doesn’t know how to choose anyone else… ❤️”</p>
+<button class="yes" id="yes4" onclick="next(5)">YES ❤️</button>
+<button class="no" onclick="grow('yes4')">NO 💙</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+<h2>Last chance 😚</h2>
+  <p>Because my heart is already waiting for your yes… forever ❤️”</p>
+<button class="yes" id="yes5" onclick="next(6)">YES ❤️</button>
+<button class="no" onclick="grow('yes5')">NO 💙</button>
+</div>
+
+<!-- PAGE 6 LETTER -->
+<div class="page" id="p6">
+<h2>Letter For You 💌</h2>
+<div class="envelope" id="env" onclick="openLetter()">
+<div class="letter">
+My Kuchu Puchu 😚<br><br>
+Thank you being my person.I want through your hand season of
+life. you are my choco pie.You my everything.and I love you so 
+  so much.Be the same as you are and not sorry to irritating. 
+  and no one can replace you from my heart.ur always my no1cutie pie<br>
+Forever Yours 💕
+</div>
+</div>
+<button onclick="next(7)">Next</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+<h2>Quiz 😌</h2>
+<p>Who do you love most?</p>
+<button onclick="alert('Correct 😍')">You</button>
+<button onclick="alert('Wrong 😏')">Others</button>
+<button onclick="next(8)">Next</button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+<h2>Gift 🎁</h2>
+<img width="200" src="https://media.tenor.com/Ys4jzX8dXnQAAAAi/teddy-bear-love.gif">
+<button onclick="next(9)">Next</button>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="p9">
+<h1 class="jump">Love You My Choco Pie ❤️</h1>
+<button onclick="next(10)">Next</button>
+</div>
+
+<!-- PAGE 10 SONG -->
+<div class="page" id="p10">
+<h2>Special Song 🎶</h2>
+<audio controls>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<script>
+function next(num){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById("p"+num).classList.add("active");
+}
+
+function grow(id){
+let btn=document.getElementById(id);
+let size=parseInt(window.getComputedStyle(btn).fontSize);
+btn.style.fontSize=(size+4)+"px";
+}
+
+function openLetter(){
+document.getElementById("env").classList.add("open");
+}
+
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=Math.random()*20+10+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},800);
+</script>
+
+</body>
+</html>
